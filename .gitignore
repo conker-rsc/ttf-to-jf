@@ -1,0 +1,44 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+/.idea/
+*.iml
+*.eml
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+### Ignore files created by posix people ###
+*~
+
+### Ignore vim swapfiles ###
+*.swp
+
+### Ignore files output by build ###
+/[Bb]in/
+/[Bb]uild/
+/[Dd]ist/
+/[Dd]oc/

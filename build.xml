@@ -1,0 +1,50 @@
+<project name="ttf-to-jf" default="dist" basedir=".">
+    <property name="src.dir" location="src"/>
+    <property name="build.dir" location="build"/>
+    <property name="dist.dir" location="dist"/>
+    <property name="tools.dir" location="tools"/>
+
+    <property name="jar.main-class" value="FontConverter" />
+
+    <path id="classpath.main">
+        <fileset dir="${basedir}">
+            <include name="lib/*.jar" />
+        </fileset>
+    </path>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="format-source">
+        <apply executable="java">
+            <arg line="-jar ${tools.dir}/google-java-format-1.7-all-deps.jar" />
+            <arg value="--replace" />
+            <srcfile />
+            <fileset dir="${src.dir}" includes="**/**.java" />
+        </apply>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" encoding="UTF-8">
+            <classpath refid="classpath.main" />
+        </javac>
+    </target>
+
+    <target name="dist" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+
+        <jar jarfile="${dist.dir}/${ant.project.name}.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="${jar.main-class}"/>
+            </manifest>
+            <zipgroupfileset dir="lib" includes="*.jar"/>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>
